@@ -1,220 +1,83 @@
-/* General Reset */
-* {
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+/* ── Reset ── */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Define color variables */
+/* ── Variables ── */
 :root {
-    --bg1-dark: #121212;  /* Dark mode main background */
-    --bg2-dark: #1e1e1e;  /* Dark mode container background */
-    --text-dark: #fff;     /* Dark mode text */
-    --bg1-white: #f1f1f1;  /* Light mode main background */
-    --bg2-white: #fff;     /* Light mode container background */
-    --text-white: #333;    /* Light mode text */
-    --theme: #025ad6;      /* Accent color for theme */
+    --bg-dark:        #080c10;
+    --surface-dark:   #0e1318;
+    --glass-dark:     rgba(255, 255, 255, 0.04);
+    --border-dark:    rgba(255, 255, 255, 0.08);
+    --text-primary:   #f0f4f8;
+    --text-secondary: #7a8a9a;
+    --text-muted:     #3a4a5a;
+
+    --bg-light:       #f0f4f8;
+    --surface-light:  #ffffff;
+    --glass-light:    rgba(0, 0, 0, 0.03);
+    --border-light:   rgba(0, 0, 0, 0.08);
+    --text-primary-l: #0d1117;
+    --text-secondary-l:#556070;
+
+    /* Accent: hot coral-pink → electric blue */
+    --accent-a: #ff3c6e;
+    --accent-b: #0070f3;
+    --gradient: linear-gradient(135deg, var(--accent-a), var(--accent-b));
+
+    --radius-sm:  8px;
+    --radius-md:  16px;
+    --radius-lg:  24px;
+    --radius-pill:999px;
+
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.25);
+    --shadow-md: 0 8px 32px rgba(0,0,0,0.4);
+    --shadow-lg: 0 24px 64px rgba(0,0,0,0.5);
+
+    --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Light/Dark Mode Colors */
-body.light-mode {
-    background-color: var(--bg1-white);
-    color: var(--text-white);
+/* ── Base ── */
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 24px 16px 64px;
+    transition: background-color var(--transition), color var(--transition);
+    /* Subtle noise texture */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
 }
 
 body.dark-mode {
-    background-color: var(--bg1-dark);
-    color: var(--text-dark);
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
 }
 
-/* General body styling */
-body {
-    font-family: 'Arial', sans-serif; /* Professional font */
-    line-height: 1.6;
-    padding: 20px;
+body.light-mode {
+    background-color: var(--bg-light);
+    color: var(--text-primary-l);
 }
 
-/* Main container for the page */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px; /* Increased padding for better spacing */
-    background-color: var(--bg2-white); /* Default white container background */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-    border-radius: 10px; /* Slightly more rounded corners */
-    margin-top: 40px; /* Margin top for spacing */
-}
-
-/* Dark mode container background */
-body.dark-mode .container {
-    background-color: var(--bg2-dark); /* Dark mode container background */
-}
-
-/* Header styling */
-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-header h1 {
-    font-size: 36px;
-    color: var(--text-white); /* Dark color for the header */
-    margin-bottom: 10px;
-}
-
-/* Input file styling */
-input[type="file"] {
-    display: none; /* Hide the default file input */
-}
-
-/* Custom file upload button */
-label[for="zipInput"] {
-    background: linear-gradient(45deg, var(--theme), #ff00c8); /* Instagram-inspired gradient */
-    color: white;
-    font-size: 16px;
-    padding: 15px 25px;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-    display: inline-block;
-    margin-left:40px;
-}
-/* Hover effect on the file upload button */
-label[for="zipInput"]:hover {
-    transform: scale(1.05);
-}
-
-/* Results section */
-#results {
-    margin-top: 40px;
-    font-size: 18px;
-    color: var(--text-dark); /* Default color for text */
-}
-
-/* Style for each result item */
-#results .user-item {
-    display: flex;
-    align-items: center;
-    margin: 15px 0; /* Increased margin for spacing */
-    padding: 15px;
-    background-color: var(--bg2-white); /* Light gray background for each result */
-    border-left: 5px solid var(--theme); /* Instagram accent color */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-    transition: background-color 0.3s ease; /* Smooth transition for background color */
-}
-
-/* Alternating background color for results */
-#results .user-item:nth-child(odd) {
-    background-color: #f9f9f9; /* Slightly different background for alternating items */
-}
-
-/* Dark mode result item styling */
-body.dark-mode #results .user-item {
-    background-color: var(--bg2-dark); /* Dark mode result background */
-    color: var(--text-dark); /* Dark mode text */
-}
-
-/* Light mode result item styling */
-body.light-mode #results .user-item {
-    color: var(--text-white); /* Ensure text is visible in light mode */
-}
-
-/* Profile picture style */
-.profile-pic {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;  /* This makes the profile picture a circle */
-    margin-right: 15px;  /* Space between profile picture and name */
-}
-
-/* Style the username link */
-#results .user-item a {
-    text-decoration: none;
-    color: var(--text-dark);
-    font-size: 16px;
-    font-weight: bold; /* Bold username for emphasis */
-}
-
-#results .user-item a:hover {
-    color: #0078D4;  /* Blue color on hover */
-}
-
-/* Light mode link color */
-body.light-mode #results .user-item a {
-    color: var(--text-white); /* Change link color in light mode */
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    margin-top: 40px;
-    font-size: 14px;
-    color: #888; /* Muted gray for footer text */
-}
-
-footer a {
-    color: var(--theme); /* Instagram accent color */
-    text-decoration: none;
-    font-weight: bold;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
-/* Media queries for responsiveness */
-@media (max-width: 768px) {
-    .container {
-        padding: 25px 15px; /* Adjusted padding for mobile */
-    }
-
-    header h1 {
-        font-size: 28px;
-    }
-
-    label[for="zipInput"] {
-        padding: 12px 20px;
-        font-size: 14px;
-    }
-
-    #results .user-item {
-        font-size: 16px;
-        padding: 12px;
-    }
-}
-
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 24px;
-    }
-
-    label[for="zipInput"] {
-        padding: 10px 15px;
-        font-size: 12px;
-    }
-
-    #results .user-item {
-        font-size: 14px;
-        padding: 10px;
-    }
-}
-
-/* Theme Toggle Container */
+/* ── Theme toggle ── */
 .theme-toggle {
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 9999; /* Ensures toggle button stays on top */
+    z-index: 9999;
 }
 
-/* Toggle Switch Styles */
 .toggle-switch {
     position: relative;
     display: inline-block;
-    width: 50px;
-    height: 25px;
+    width: 48px;
+    height: 26px;
 }
 
 .toggle-switch input {
@@ -225,77 +88,344 @@ footer a:hover {
 
 .slider {
     position: absolute;
+    inset: 0;
     cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #555;
-    transition: 0.4s;
-    border-radius: 25px;
+    background-color: var(--text-muted);
+    border-radius: var(--radius-pill);
+    transition: background-color var(--transition);
 }
 
-.slider:before {
-    position: absolute;
+.slider::before {
     content: "";
-    height: 17px;
-    width: 17px;
+    position: absolute;
+    height: 18px;
+    width: 18px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
-    transition: 0.4s;
+    background: #fff;
     border-radius: 50%;
+    transition: transform var(--transition);
+    box-shadow: var(--shadow-sm);
 }
 
 input:checked + .slider {
-    background-color: var(--theme); /* Instagram Accent Color */
+    background: var(--gradient);
 }
 
-input:checked + .slider:before {
-    transform: translateX(25px);
+input:checked + .slider::before {
+    transform: translateX(22px);
 }
 
-/* Main Title Styling */
-.main-title {
-    font-size: 48px;
-    text-align: center;
-    margin-bottom: 30px;
-    color: var(--theme); /* Accent color */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* General container styles */
+/* ── Container ── */
 .container {
-    max-width: 1200px;
+    max-width: 720px;
     margin: 0 auto;
-    padding: 20px;
-    background-color: var(--bg2-white); /* Light mode container background */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 50px;
+    padding: 48px 40px;
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-dark);
+    box-shadow: var(--shadow-lg);
+    animation: slideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Results Section */
+body.dark-mode .container {
+    background: var(--surface-dark);
+    border-color: var(--border-dark);
+}
+
+body.light-mode .container {
+    background: var(--surface-light);
+    border-color: var(--border-light);
+    box-shadow: 0 8px 48px rgba(0,0,0,0.08);
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Main title ── */
+.main-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(28px, 5vw, 46px);
+    letter-spacing: -0.03em;
+    text-align: center;
+    margin-bottom: 8px;
+    /* Gradient text */
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+}
+
+/* ── Header ── */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.01em;
+    margin-bottom: 6px;
+}
+
+body.dark-mode header h2 { color: var(--text-primary); }
+body.light-mode header h2 { color: var(--text-primary-l); }
+
+header p {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+body.dark-mode header p { color: var(--text-secondary); }
+body.light-mode header p { color: var(--text-secondary-l); }
+
+/* ── Divider between title and header ── */
+header::before {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--gradient);
+    margin: 0 auto 20px;
+    border-radius: var(--radius-pill);
+}
+
+/* ── Upload form ── */
+#fileForm {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+label[for="zipInput"] {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    border-radius: var(--radius-pill);
+    background: var(--gradient);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(255, 60, 110, 0.35);
+    transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+    user-select: none;
+}
+
+/* Upload icon via pseudo-element */
+label[for="zipInput"]::before {
+    content: "↑";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+label[for="zipInput"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(255, 60, 110, 0.5);
+}
+
+label[for="zipInput"]:active {
+    transform: translateY(0);
+    opacity: 0.85;
+}
+
+/* ── Results ── */
+#results {
+    margin-top: 36px;
+}
+
+/* Summary line */
+#results > p {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-dark);
+}
+
+body.dark-mode #results > p { color: var(--text-secondary); border-color: var(--border-dark); }
+body.light-mode #results > p { color: var(--text-secondary-l); border-color: var(--border-light); }
+
+/* User item card */
 #results .user-item {
-    background-color: var(--bg2-white);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    margin-bottom: 10px;
+    transition:
+        background-color var(--transition),
+        border-color var(--transition),
+        transform var(--transition);
+    animation: fadeIn 0.3s ease both;
+}
+
+body.dark-mode #results .user-item {
+    background: var(--glass-dark);
+    border-color: var(--border-dark);
 }
 
 body.light-mode #results .user-item {
-    background-color: var(--bg2-white); /* Light mode result background */
+    background: #f6f8fb;
+    border-color: var(--border-light);
 }
-/* Hover effect on the username link in both light and dark mode */
+
+#results .user-item:hover {
+    transform: translateX(4px);
+    border-color: var(--accent-a);
+}
+
+body.dark-mode #results .user-item:hover {
+    background: rgba(255, 60, 110, 0.06);
+}
+
+body.light-mode #results .user-item:hover {
+    background: #fff;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Stagger item animations */
+#results .user-item:nth-child(1)  { animation-delay: 0.02s; }
+#results .user-item:nth-child(2)  { animation-delay: 0.04s; }
+#results .user-item:nth-child(3)  { animation-delay: 0.06s; }
+#results .user-item:nth-child(4)  { animation-delay: 0.08s; }
+#results .user-item:nth-child(5)  { animation-delay: 0.10s; }
+#results .user-item:nth-child(6)  { animation-delay: 0.12s; }
+#results .user-item:nth-child(7)  { animation-delay: 0.14s; }
+#results .user-item:nth-child(8)  { animation-delay: 0.16s; }
+#results .user-item:nth-child(9)  { animation-delay: 0.18s; }
+#results .user-item:nth-child(10) { animation-delay: 0.20s; }
+
+/* Profile pic */
+.profile-pic {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    /* Gradient ring */
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    background: var(--gradient);
+    /* Fallback placeholder color */
+    background-color: var(--text-muted);
+}
+
+/* Username link */
+#results .user-item a {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: color var(--transition);
+}
+
+body.dark-mode #results .user-item a { color: var(--text-primary); }
+body.light-mode #results .user-item a { color: var(--text-primary-l); }
+
 #results .user-item a:hover {
-    color: #0078D4;  /* Blue color on hover */
+    color: var(--accent-a);
 }
 
-/* Light mode username link hover effect */
-body.light-mode #results .user-item a:hover {
-    color: #0078D4;  /* Ensure the hover color is applied in light mode */
+/* "is not following you back" text */
+#results .user-item span {
+    font-size: 13px;
+    font-weight: 300;
 }
 
+body.dark-mode #results .user-item span { color: var(--text-secondary); }
+body.light-mode #results .user-item span { color: var(--text-secondary-l); }
 
-/* Media Queries */
-@media (max-width: 768px) {
+/* Pill badge on hover — "Not following" */
+#results .user-item::after {
+    content: "not following";
+    margin-left: auto;
+    flex-shrink: 0;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 60, 110, 0.12);
+    color: var(--accent-a);
+    border: 1px solid rgba(255, 60, 110, 0.2);
+    white-space: nowrap;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity var(--transition), transform var(--transition);
+}
+
+#results .user-item:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ── Footer ── */
+footer {
+    text-align: center;
+    margin-top: 48px;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+}
+
+body.dark-mode footer { color: var(--text-muted); }
+body.light-mode footer { color: #aab; }
+
+footer a {
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: opacity var(--transition);
+}
+
+footer a:hover { opacity: 0.75; }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+    .container {
+        padding: 32px 20px;
+        border-radius: var(--radius-md);
+    }
+
     .main-title {
-        font-size: 36px;
+        font-size: 28px;
+    }
+
+    #results .user-item::after {
+        display: none; /* hide badge on small screens */
+    }
+
+    #results .user-item span {
+        display: none; /* hide "is not following you back" text, redundant on mobile */
     }
 }
