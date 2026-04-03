@@ -1,3 +1,5 @@
+![GhostFollow Banner](assets/banner.png)
+
 # GhostFollow
 > Find the ghosts in your following list.
 

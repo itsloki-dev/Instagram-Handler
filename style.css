@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
 /* ── Reset ── */
 *, *::before, *::after {
@@ -63,6 +63,12 @@ body.dark-mode {
 body.light-mode {
     background-color: var(--bg-light);
     color: var(--text-primary-l);
+}
+
+body.light-mode .main-title {
+    background: none;
+    -webkit-text-fill-color: initial;
+    color: #0d1117; /* your light text color */
 }
 
 /* ── Theme toggle ── */
@@ -147,18 +153,32 @@ body.light-mode .container {
 
 /* ── Main title ── */
 .main-title {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     font-size: clamp(28px, 5vw, 46px);
     letter-spacing: -0.03em;
     text-align: center;
     margin-bottom: 8px;
     /* Gradient text */
-    background: var(--gradient);
+    background: white;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     line-height: 1.1;
+}
+
+.title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.logo {
+    height: 70px;
+    width: auto;
+    display: block;
 }
 
 /* ── Header ── */
@@ -168,7 +188,7 @@ header {
 }
 
 header h2 {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: 18px;
     letter-spacing: 0.01em;
@@ -216,7 +236,7 @@ label[for="zipInput"] {
     border-radius: var(--radius-pill);
     background: var(--gradient);
     color: #fff;
-    font-family: 'Syne', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.04em;
@@ -337,7 +357,7 @@ body.light-mode #results .user-item:hover {
 
 /* Username link */
 #results .user-item a {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;

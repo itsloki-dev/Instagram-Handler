@@ -95,7 +95,16 @@ async function processZip() {
 
 document.getElementById("zipInput").addEventListener("change", processZip);
 
-document.getElementById("themeSwitcher").addEventListener("change", function () {
+const themeSwitcher = document.getElementById("themeSwitcher");
+const logo = document.getElementById("logo");
+
+themeSwitcher.addEventListener("change", function () {
     document.body.classList.toggle("light-mode");
     document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("light-mode")) {
+        logo.src = "./assets/logo_black.png";
+    } else {
+        logo.src = "./assets/logo.png";
+    }
 });
