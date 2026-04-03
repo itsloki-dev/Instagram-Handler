@@ -1,5 +1,7 @@
 # GhostFollow
-Find the ghosts in your following list
+> Find the ghosts in your following list.
+
+[🔗 Open Hosted Website](https://ghost-follow.vercel.app/)
 
 ![Status](https://img.shields.io/badge/status-personal--project-blue)
 ![Tech](https://img.shields.io/badge/tech-vanilla--js-yellow)
@@ -7,8 +9,8 @@ Find the ghosts in your following list
 
 A minimal tool that parses your Instagram data export and tells you who doesn’t follow you back.
 
-No accounts. No APIs. No tracking.
-Just your data, processed locally.
+No accounts. No APIs. No tracking.  
+Just your data. Processed locally.
 
 ---
 
@@ -36,7 +38,7 @@ The logic is straightforward but reliable:
 * Iterates through following list
 * Flags users not present in the follower set
 
-Everything happens client-side.
+Everything runs client-side.
 
 ---
 
@@ -80,7 +82,7 @@ So I did the only logical thing:
 
 I built my own tool.
 
----
+## How I Built This
 
 Now here’s the funny part —
 I didn’t actually *know* web development.
@@ -105,8 +107,6 @@ Because this was early ChatGPT era — it wasn’t the smartest tool yet.
 But somehow, I got it working.
 
 And that was actually my entry point into web development.
-
----
 
 So yeah — this project is:
 

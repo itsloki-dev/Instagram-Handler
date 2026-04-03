@@ -70,7 +70,7 @@ async function processZip() {
                 userName.textContent = username;
 
                 const followBackText = document.createElement("span");
-                followBackText.textContent = " is not following you back.";
+                followBackText.textContent = " is ghosting you.";
 
                 listItem.appendChild(profilePic);
                 listItem.appendChild(userName);
